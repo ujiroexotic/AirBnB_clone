@@ -1,10 +1,30 @@
 #!/usr/bin/env python3
+""" BaseModel for all classes in Airbnb project """
 
 from datetime import datetime
 import uuid
 
-
 class BaseModel:
+    """
+    Implements a basemodel for all classes in project
+    enabling all instances and subclass with a unique 
+    universal identifier 'uuid', and tracks time it's
+    created and updated with datetime classes
+
+    Attributes
+    ==========
+    id:
+        Unique Universal Intifier, makes all subclass
+        unique, uses python uuid model.
+
+    created_at:
+        public instance attrib representation of time
+        of creation, with datetime module
+
+    updated_at:
+        datetime representation of when the class is
+        updated.
+    """
 
     def __init__(self, *args, **kwargs):
         if len(kwargs) != 0:
@@ -24,9 +44,15 @@ class BaseModel:
         return f"[BaseModel] ({self.id}) {self.__dict__}"
 
     def save(self):
+        """
+        saves the class attributes to files with json format
+        """
         self.updated_at = datetime.now()
 
     def to_dict(self):
+        """
+        returns a dictionary of all class attributes
+        """
         dictionary = self.__dict__.copy()
         dictionary["__class__"] = "BaseModel"
         dictionary["created_at"] = self.created_at.isoformat()
