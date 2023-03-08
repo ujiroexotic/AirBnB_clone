@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """ BaseModel for all classes in Airbnb project """
 
+
 from datetime import datetime
 import uuid
+
 
 class BaseModel:
     """
@@ -39,6 +41,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
 
     def __str__(self):
         return f"[BaseModel] ({self.id}) {self.__dict__}"
