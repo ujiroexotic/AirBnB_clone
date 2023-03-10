@@ -22,10 +22,8 @@ class FileStorage:
         object with id=12121212121, the key will be
         BaseModel.12121212121.
     """
-    def __init__(self, file=""):
-        """ initializes private attributes """
-        self.__file_path = file
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """ returns the dictionary __objects """

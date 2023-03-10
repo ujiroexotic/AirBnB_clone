@@ -8,7 +8,6 @@ class TestFileStorage(unittest.TestCase):
     """ Test for all attributest and methods
     for storage class
     """
-        
     def setUp(self):
         """ Load test data """
         from models.engine import file_storage
@@ -22,7 +21,6 @@ class TestFileStorage(unittest.TestCase):
         return value
         """
         self.assertIs(type(self.modelObjs), dict)
-    
 
     def test_storage_new(self):
         """ tests storage.new method """
@@ -61,8 +59,3 @@ class TestFileStorage(unittest.TestCase):
         obj = storage.all()
 
         self.assertEqual(obj[baseKey].id, base.id)
-
-
-
-
-
