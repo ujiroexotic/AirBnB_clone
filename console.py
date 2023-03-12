@@ -11,13 +11,14 @@ MODEL_CLASS = {
         "basemodel": BaseModel
         }
 
+
 def parse_line_logic(self, line):
     command = cmd.Cmd.parseline(self, line)
     model = command[0]
     id_ = command[1]
-    
+
     if model is None:
-        print ("** class name missing **")
+        print("** class name missing **")
         return None
     if model.lower() not in MODEL_CLASS.keys():
         print("** class doesn't exist **")
@@ -33,14 +34,13 @@ def parse_line_logic(self, line):
     return modelId
 
 
-
 class HBNBCommand(cmd.Cmd):
     """ Airbnb command prompt interface """
     prompt = '(hbnb) '
 
     def do_create(self, line):
         if line == "":
-            print ("** class name missing **")
+            print("** class name missing **")
         elif line.lower() not in MODEL_CLASS.keys():
             print("** class doesn't exist **")
         else:
@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             print(model.id)
 
     def help_create(self):
-        print ("creates a new instance of BaseModel")
+        print("creates a new instance of BaseModel")
         print("ex: (hbnb) create BaseModel\n")
 
     def do_update(self, line):
@@ -72,14 +72,14 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         model = STORAGE[modelId]
-        
+
         if length == 2:
             print("** attribute name missing **")
             return
 
         if length == 3:
             print("** value missing **")
-            return 
+            return
 
         value = command[3]
 
@@ -89,13 +89,14 @@ class HBNBCommand(cmd.Cmd):
             model.__dict__[command[2]] = value
         model.save()
 
-        
     def help_update(self):
         print("Updates an instance based on the class name and id")
-        print('ex: (hbnb) Update <class name> <id> <attribute name> "<attribute value>"\n')
+        string = 'ex: (hbnb) Update <class name> <id> '
+        string += '<attribute name> "<attribute value>"\n'
+        print(string)
 
     def do_show(self, line):
-        modelId = parse_line_logic(self,line)
+        modelId = parse_line_logic(self, line)
         if modelId is not None:
             print(STORAGE[modelId])
 
@@ -108,7 +109,6 @@ class HBNBCommand(cmd.Cmd):
         if modelId is not None:
             STORAGE.pop(modelId)
             storage.save()
-
 
     def help_destroy(self):
         print("Destroys class instance based on class name and id")
@@ -130,8 +130,6 @@ class HBNBCommand(cmd.Cmd):
             return
         print(result)
 
-            
-    
     def help_all(self):
         print("prints all string representation of all istances")
         print("ex: (hbnb) create BaseModel\n")
@@ -149,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         return
- 
+
     def postcmd(self, stop, line):
         return cmd.Cmd.postcmd(self, stop, line)
 
