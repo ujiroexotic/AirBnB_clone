@@ -10,7 +10,7 @@ class FileStorage:
     that inherites from BaseModel class.
     Storages them in a json file structure
     for serialization.
-    
+
     Attributes
     ==========
     __file_path:
@@ -46,7 +46,6 @@ class FileStorage:
         for key in self.__objects.keys():
             data[key] = self.__objects[key].to_dict()
 
-
         with open(self.__file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f)
 
@@ -59,17 +58,5 @@ class FileStorage:
             for key in json_objects.keys():
                 if "BaseModel" in key:
                     self.__objects[key] = BaseModel(**json_objects[key])
-        except:
+        except Exception:
             pass
-
-
-
-
-
-
-
-
-
-
-
-
