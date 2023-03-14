@@ -3,12 +3,14 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 STORAGE = storage.all()
 
 MODEL_CLASS = {
-        "basemodel": BaseModel
+        "basemodel": BaseModel,
+        "user": User
         }
 
 

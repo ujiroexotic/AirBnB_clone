@@ -3,7 +3,7 @@
 
 import json
 from models.base_model import BaseModel
-
+from models.user import User
 
 class FileStorage:
     """ Stores a dictionary of all objects
@@ -58,5 +58,7 @@ class FileStorage:
             for key in json_objects.keys():
                 if "BaseModel" in key:
                     self.__objects[key] = BaseModel(**json_objects[key])
-        except Exception:
-            pass
+                elif "User" in key:
+                    self.__objects[key] = User(**json_objects[key])
+        except Exception as e:
+            print(e)

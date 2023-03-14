@@ -45,7 +45,7 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        return f"[BaseModel] ({self.id}) {self.__dict__}"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
@@ -54,12 +54,13 @@ class BaseModel:
         self.updated_at = datetime.now()
         models.storage.save()
 
+
     def to_dict(self):
         """
         returns a dictionary of all class attributes
         """
         dictionary = self.__dict__.copy()
-        dictionary["__class__"] = "BaseModel"
+        dictionary["__class__"] = type(self).__name__
         dictionary["created_at"] = self.created_at.isoformat()
-        dictionary["updated_at"] = self.created_at.isoformat()
+        dictionary["updated_at"] = self.updated_at.isoformat()
         return dictionary
