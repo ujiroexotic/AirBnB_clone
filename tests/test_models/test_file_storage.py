@@ -12,7 +12,7 @@ class TestFileStorage(unittest.TestCase):
         """ Load test data """
         from models.engine import file_storage
 
-        self.storage = file_storage.FileStorage('tests/test_file.json')
+        self.storage = file_storage.FileStorage()
         self.storage.reload()
         self.modelObjs = self.storage.all()
 
@@ -45,7 +45,7 @@ class TestFileStorage(unittest.TestCase):
         from models.base_model import BaseModel
         from models.engine.file_storage import FileStorage
 
-        storage = FileStorage('tests/test_file.json')
+        storage = FileStorage()
 
         base = BaseModel()
         base.name = 'Anna'
