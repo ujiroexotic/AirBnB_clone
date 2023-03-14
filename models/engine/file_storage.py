@@ -60,5 +60,5 @@ class FileStorage:
                     self.__objects[key] = BaseModel(**json_objects[key])
                 elif "User" in key:
                     self.__objects[key] = User(**json_objects[key])
-        except Exception as e:
-            print(e)
+        except Exception:
+            pass
