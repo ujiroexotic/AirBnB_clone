@@ -4,6 +4,11 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """ Stores a dictionary of all objects
@@ -60,5 +65,16 @@ class FileStorage:
                     self.__objects[key] = BaseModel(**json_objects[key])
                 elif "User" in key:
                     self.__objects[key] = User(**json_objects[key])
+                elif "State" in key:
+                    self.__objects[key] = State(**json_objects[key])
+                elif "Place" in key:
+                    self.__objects[key] = Place(**json_objects[key])
+                elif "City" in key:
+                    self.__objects[key] = City(**json_objects[key])
+                elif "Amenity" in key:
+                    self.__objects[key] = Amenity(**json_objects[key])
+                elif "Review" in key:
+                    self.__objects[key] = Review(**json_objects[key])
+
         except Exception:
             pass
